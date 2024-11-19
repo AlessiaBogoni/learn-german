@@ -1,4 +1,5 @@
 import { AfterViewInit, ChangeDetectorRef, Component, Input, ViewChild } from '@angular/core';
+import { data } from '../data';
 
 @Component({
   selector: 'app-fida-table',
@@ -20,10 +21,11 @@ export class TableComponent implements AfterViewInit {
 
 
   ngAfterViewInit() {
-    this.data = JSON.parse(localStorage.getItem('lg-data' + this.name) || '[]');
-    this.column = JSON.parse(
+    this.data = localStorage.getItem('lg-data' + this.name) ? 
+      JSON.parse(localStorage.getItem('lg-data' + this.name) || '[]') : data['lg-data' + this.name] as any;
+    this.column = localStorage.getItem('lg-column' + this.name) ? JSON.parse(
       localStorage.getItem('lg-column' + this.name) || '[]'
-    );
+    ): data['lg-column' + this.name] as any;
     const headerNames = this.data[0];
     this.elementRef.nativeElement.data = this.data;
 

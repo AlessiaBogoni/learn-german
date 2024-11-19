@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { data } from '../data';
 
 @Component({
     selector: 'app-vocabulary',
@@ -10,7 +11,7 @@ import { AfterViewInit, Component, ViewChild } from '@angular/core';
     dataV = [];
   
     ngAfterViewInit() {
-      this.dataV = JSON.parse(localStorage.getItem('lg-dataV') || '[]');
+      this.dataV = localStorage.getItem('lg-dataV') ? JSON.parse(localStorage.getItem('lg-dataV') || '[]') : data['lg-dataV'];
   
       this.elementRef.nativeElement.data = this.dataV;
       this.elementRef.nativeElement.onCellUpdate = (cellUpdate: any) => { console.log(cellUpdate); };
